@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Project information -->
+	<name>Spout Parent</name>
+	<groupId>org.spout</groupId>
+	<artifactId>spout-parent</artifactId>
+	<version>1</version>
+	<packaging>pom</packaging>
+	<url>http://www.spout.org</url>
+	<description></description>
+
+	<!-- Build properties -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<!-- Source code access -->
+	<scm>
+		<connection>scm:git:git://github.com/SpoutDev/spout-parent.git</connection>
+		<developerConnection>scm:git:git@github.com:SpoutDev/spout-parent.git</developerConnection>
+		<url>https://github.com/SpoutDev/spout-parent</url>
+	</scm>
+
+	<!-- Dependency repositories -->
+	<repositories>
+		<repository>
+			<id>spout-repo</id>
+			<name>Spout Repo</name>
+			<url>http://nexus.spout.org/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<!-- Build plugin repositories -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spout-repo</id>
+			<url>http://nexus.spout.org/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- Distrubution repositories -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>spout-nexus-snapshots</id>
+			<name>Spout Nexus Snapshots</name>
+			<url>http://nexus.spout.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>spout-nexus-staging</id>
+			<name>Spout Nexus Releases</name>
+			<url>http://nexus.spout.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<!-- Build configuration -->
+	<build>
+		<!-- Build plugins -->
+		<plugins>
+			<!-- Enforcer plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>(,2.1.0),(2.1.0,2.2.0),(2.2.0,)</version>
+									<message>Maven 2.1.0 and 2.2.0 produce incorrect GPG signatures and checksums respectively.</message>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<!-- Plugin management -->
+		<pluginManagement>
+			<plugins>
+				<!-- Release plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<mavenExecutorId>forked-path</mavenExecutorId>
+						<useReleaseProfile>false</useReleaseProfile>
+						<arguments>-P spout-release</arguments>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- Build profiles -->
+	<profiles>
+		<!-- Spout Nexus releases -->
+		<profile>
+			<id>spout-nexus-release</id>
+			<build>
+				<plugins>
+					<!-- Source compiler plugin -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Javadoc generation plugin -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- GPG signature plugin -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.4</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
