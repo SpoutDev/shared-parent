@@ -1,2 +1,2 @@
-spout-parent
-============
+shared-parent
+=============
