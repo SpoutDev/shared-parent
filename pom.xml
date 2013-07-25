@@ -45,12 +45,12 @@
 		<snapshotRepository>
 			<id>spout-nexus-snapshots</id>
 			<name>Spout Nexus Snapshots</name>
-			<url>http://nexus.spout.org/content/repositories/snapshots/</url>
+			<url>http://nexus.spout.org/content/repositories/spout-snapshots/</url>
 		</snapshotRepository>
 		<repository>
 			<id>spout-nexus-releases</id>
 			<name>Spout Nexus Releases</name>
-			<url>http://nexus.spout.org/content/repositories/releases/</url>
+			<url>http://nexus.spout.org/content/repositories/spout-releases/</url>
 		</repository>
 	</distributionManagement>
 
