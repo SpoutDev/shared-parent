@@ -27,7 +27,7 @@
 		<repository>
 			<id>spout-repo</id>
 			<name>Spout Repo</name>
-			<url>http://nexus.spout.org/content/groups/public/</url>
+			<url>http://nexus.spout.org/content/groups/public</url>
 		</repository>
 	</repositories>
 
@@ -36,7 +36,7 @@
 		<pluginRepository>
 			<id>spout-repo</id>
 			<name>Spout Repo</name>
-			<url>http://nexus.spout.org/content/groups/public/</url>
+			<url>http://nexus.spout.org/content/groups/public</url>
 		</pluginRepository>
 	</pluginRepositories>
 
@@ -45,12 +45,12 @@
 		<snapshotRepository>
 			<id>spout-nexus-snapshots</id>
 			<name>Spout Nexus Snapshots</name>
-			<url>http://nexus.spout.org/content/repositories/spout-snapshots/</url>
+			<url>http://nexus.spout.org/content/repositories/spout-snapshots</url>
 		</snapshotRepository>
 		<repository>
 			<id>spout-nexus-releases</id>
 			<name>Spout Nexus Releases</name>
-			<url>http://nexus.spout.org/content/repositories/spout-releases/</url>
+			<url>http://nexus.spout.org/content/repositories/spout-releases</url>
 		</repository>
 	</distributionManagement>
 
